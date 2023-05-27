@@ -1,0 +1,1561 @@
+---
+title: "Case Study on Bellabeat"
+subtitle: "A Health Focused High-Tech Manufacturer"
+author: "By Somnath Das Gupta"
+format: 
+  html: 
+    code-fold: true
+    toc: true
+    number-sections: true
+    number-depth: 3
+    toc-depth: 2
+    toc-style: sidebar
+    toc-location: left
+    toc-title: Contents
+    smooth-scroll: true
+    embed-resources: true
+    code-copy: true
+    highlight-style: github
+    comments: false
+    code-line-numbers: true
+    self-contained: true
+    code-overflow: scroll
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+    css: style.css
+    theme:
+      light: sandstone
+      dark: darkly
+    execute:
+      echo: true
+editor_options: 
+  chunk_output_type: inline
+editor: visual
+---
+
+## INTRODUCTION {style="font-family: Century;"}
+
+<p style="font-size: 100%; font-family: Century" class="reveal-text-justify">
+
+Hello everyone, it's been a few months since I've been working on the Google Data Analytics Professional Certificate through Coursera. Throughout this journey I've accumulated lots of interesting, insightful and most importantly, useful information about various tools that were included with the bundle, such as Tableau, R programming, SQL, Spreadsheets.
+
+</p>
+
+<p style="font-size: 100%; font-family: Century" class="reveal-text-justify">
+
+This curriculum not only exposed me to diverse standardized practices, but also equipped me with a universal framework that I could apply to any project. Moreover, I gained valuable knowledge of key data analyst terminologies and processes. Through the completion of a case study included in the course, I was able to further enhance my skills and understanding by utilizing a variety of tools, methods, and strategies. Further, I will provide a brief walk through of my thought process and overall comprehension that I have developed over time through this case study.
+
+</p>
+
+## BACKGROUND INFORMATION {style="font-family: Century;"}
+
+<p style="font-size: 100%; font-family: Century" class="reveal-text-justify">
+
+Bellabeat is a high-tech manufacturer that manufactures health-focused smart products for women.They develop uniquely beautifully designed technology that informs and inspires women around the world. Their app and multiple smart devices are the source point to collect various data on activity, sleep, stress, hydration levels, and reproductive health to empower women with an understanding of their own health and habits.
+
+</p>
+
+<p style="font-size: 100%; font-family: Century" class="reveal-text-justify">
+
+Bellabeat was founded in 2013 by Urška Sršen and Sando Mur and since then it has grown rapidly and quickly positioned itself as a tech-driven wellness company for women.It took them three years to open multiple offices around the world and launch various products.They increased their product's availability through a growing number of online retailers in addition to their own e - commerce channel on their [website](https://bellabeat.com/){preview-link="true"}.
+
+</p>
+
+<p style="font-size: 100%; font-family: Century" class="reveal-text-justify">
+
+Bellabeat offers a range of products that promote wellness and a healthy lifestyle, all of which connect to the Bellabeat app.There are different product lines available, but one of their popular products is the Leaf, a wellness tracker that can be worn as a bracelet, necklace, or clip. It tracks the user's activity, sleep, and stress levels and syncs with the Bellabeat app.Apart from their products, they also offer a subscription-based membership program that provides personalized guidance on nutrition, activity, sleep, health, beauty, and mindfulness, based on users' lifestyles and goals, with 24/7 access.
+
+</p>
+
+## DATA LIMITATIONS {style="font-family: Century;"}
+
+<p style="font-size: 100%; font-family: Century" class="reveal-text-justify">
+
+We have identified several limitations in the datasets. First and foremost, the data is not comprehensive, as it includes inputs from only 33 unique users. Of these 33 users, only 8 entered weight, 12 entered heart rate, and 24 entered sleep data. Furthermore, some users did not provide information for all variables in the weight dataset, making the data incomplete. Despite these limitations, we will still work with these datasets as they contain important variables.
+
+</p>
+
+<p style="font-size: 100%; font-family: Century" class="reveal-text-justify">
+
+It's important to note that the data comes from FitBit users, which is a secondary source, and therefore may not accurately reflect the behavior and data distribution of BellaBeat users, potentially leading to inaccurate insights.Another limitation is that the data is not current, as it was collected between 4/12/2016 to 5/12/2016, which was about 5 years prior to the time of this case study.The limited duration of data collection, only 30 days, and the small number of users, 33, also affect the reliability and may have resulted in a biased dataset.Some users may not have entered information, while others may have turned off their devices or not used them regularly. Additionally, some data was manually entered, such as weight information, which introduces potential errors.
+
+</p>
+
+<p style="font-size: 100%; font-family: Century" class="reveal-text-justify">
+
+If this were a real-life project intended to define BellaBeat's marketing strategy, these limitations would need to be addressed before proceeding with the analysis. However, as this is a case study and we cannot control these limitations, we will still proceed with the analysis.In a real-world scenario, a data analyst would ask several questions before proceeding with data cleaning, such as why some users generated more data rows than others, whether users contributed data voluntarily or were told how often to use the app, and what measures were taken to eliminate sampling bias. It would also be beneficial to obtain newer versions of these datasets or similar datasets directly from BellaBeat for comparison and originality.
+
+</p>
+
+## [ASK PHASE:]{data-incremental="" style="font-family: Century;"}
+
+<p style="font-size: 100%; font-family: Century" class="reveal-text-center">
+
+Some of the determining questions asked which will significantly guide the direction for the future marketing program:
+
+</p>
+
+<ul style="font-size: 100%; font-family: Century" class="reveal-text-center">
+
+-   Do you have any specific recommendations for any selective domain or devices that you consider essential to focus on while recommending a marketing strategy?
+-   What kinds of targets or expectations have you set for this analysis? Do you mind giving a concise brief?
+-   Are you willing to pivot your business strategy if this analysis reveals insights that could help you expand your customer base and improve the customer experience apart from high level recommendation for marketing strategy?
+-   Can you identify any products that did not receive the desired response, as compared to stakeholders expectations? If so, could you provide a short brief of what you think went wrong?
+-   What will be the use case for recommending a high-level marketing strategy? Is it to enhance your current services or products, or perhaps to launch a new product or service offering?
+
+</ul>
+
+### Key Takeways {style="font-family: Century;"}
+
+<ul style="font-size: 100%; font-family: Century" class="reveal-text-center">
+
+1.  Identify business task.
+
+-   The main purpose of this analysis is to recommend a high-level marketing strategy and provide insights, which will enable the executive team to gain a clear landscape of the current state and identify untapped opportunities for growth.
+-   The analysis of any one product can result in either minor or significant changes to that product or the creation of a new product that enhances the overall female customers experience as well as, can increase retention rates.
+
+2.  Consider Key Stakeholders.
+
+-   Urška Sršen(Bellabeat's cofounder and Chief Creative Officer).
+-   Sando Mur(Mathematician and Bellabeat's cofounder)
+-   Marketing Analytics Team.
+
+</ul>
+
+### Deliverables {style="font-family: Century;"}
+
+<ul style="font-size: 100%; font-family: Century" class="reveal-text-center">
+
+-   Our goal is to ascertain growth opportunities for any specific products or services, as well as unlock the full potential of female customers who avail themselves of these offerings.
+-   The aim is to spot all determining factors which are hindering female customers from achieving a balanced lifestyle through use of the app and also undermining possibilities for improving the app's services to a superior standard.
+
+</ul>
+
+## [PREPARE PHASE:]{data-incremental="" style="font-family: Century;"}
+
+<p style="font-size: 100%; font-family: Century" class="reveal-text-justify">
+
+In this analysis, I will be using datasets to identify every pattern and style in how female users are utilizing the availed services or products. This analysis can also help broadcast areas where the product or service may need improvement or where the marketing strategies can be optimized to better cater to the needs and preferences of female users.The data is made available using public domain by Mobius [page](https://www.kaggle.com/arashnic){preview-link="true"}.
+
+</p>
+
+### Key Task {style="font-family: Century;"}
+
+<ul style="font-size: 100%; font-family: Century" class="reveal-text-center">
+
+-   Load the datasets in a particular order to ensure they are in consecutive order.
+-   Downloading the datasets from a given online repository and then save them in a separate folder as raw data.
+-   Determining the file format and ensuring if lists of docs are accessible,as well as both readable and writable.
+-   Examining the credibility of data by inspecting for any vague or unwanted rows in each of the datasets and then sort them accordingly.
+-   Checking if the total number of id's are same for each dataset so as to identify any discrepancies and inconsistencies within the dataset.
+
+</ul>
+
+### Deliverables {style="font-family: Century;"}
+
+<ul style="font-size: 100%; font-family: Century" class= "reveal-text-center">
+
+-   Documenting the entire procedure step by step involved in this phase.
+-   A short brief on each operation performed for clarity and ease of understanding.
+
+### Code Chunk {style="font-family: Century;"}
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Let's load the libraries:
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(janitor)
+library(hms)
+library(geosphere)
+library(spatialrisk)
+library(distances)
+library(Distance)
+library(measurements)
+library(plotrix)
+library(lubridate)
+library(ggalt)
+library(hrbrthemes)
+library(viridis)
+library(ggridges)
+library(scales)
+library(readxl)
+library(writexl)
+library(ggiraph)
+library(viridisLite)
+library(labeling)
+library(farver)
+library(psych)
+library(plotly)
+library(GGally)
+library(ggiraphExtra)
+library(ggcorrplot)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Importing all Datsets.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+daily_activity <- read_csv("dailyActivity_merged.csv")
+daily_calories <- read_csv("dailyCalories_merged.csv")
+daily_Intensities <- read_csv("dailyIntensities_merged.csv")
+daily_steps <- read_csv("dailySteps_merged.csv")
+heartrate_seconds <- read_csv("heartrate_seconds_merged.csv")
+hourly_calories <- read_csv("hourlyCalories_merged.csv")
+hourly_intensities <- read_csv("hourlyIntensities_merged.csv")
+hourly_steps <- read_csv("hourlySteps_merged.csv")
+minute_calories_narrow <- read_csv("minuteCaloriesNarrow_merged.csv")
+minute_calories_wide <- read_csv("minuteCaloriesWide_merged.csv")
+minute_intensities_narrow <- read_csv("minuteIntensitiesNarrow_merged.csv")
+minute_intensities_wide <- read_csv("minuteIntensitiesWide_merged.csv")
+minute_METs_narrow <- read_csv("minuteMETsNarrow_merged.csv")
+minute_sleep <- read_csv("minuteSleep_merged.csv")
+minute_steps_narrow <- read_csv("minuteStepsNarrow_merged.csv")
+minute_steps_wide <- read_csv("minuteStepsWide_merged.csv")
+sleep_day <- read_csv("sleepDay_merged.csv")
+weight_log_info <- read_csv("weightLogInfo_merged.csv")
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Checking for distinctive user id in order to know exact number of users in a dataset.
+
+</p>
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+For daily_steps dataset.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+n_distinct(daily_steps$Id)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+For daily_calories dataset.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+n_distinct(daily_calories$Id)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+For daily_intensities dataset.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+n_distinct(daily_Intensities$Id)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+For daily_activities dataset.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+n_distinct(daily_Intensities$Id)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+For sleep_day dataset.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+n_distinct(sleep_day$Id)
+```
+
+## [PROCESS PHASE:]{data-incremental="" style="font-family: Century;"}
+
+<p style="font-size: 100%; font-family: Century" class="reveal-text-justify">
+
+Cleaning and processing of the gathered datasets is necessary to determine the quality of associated characteristics and to proceed with further analysis.
+
+</p>
+
+### Key Task {style="font-family: Century;"}
+
+<ul style="font-size: 100%; font-family: Century" class="reveal-text-center">
+
+-   Examine across datasets for errors or missing values.
+-   Eradicating duplicates and outliers from datasets if any.
+-   Selecting the appropriate tool to perform the required analysis.
+-   Storing a backup of original datasets to refer back to in case any essential data is lost during analysis.
+-   Transform the existing dataset into a workable format to perform the desired analysis.
+
+</ul>
+
+### Deliverables {style="font-family: Century;"}
+
+<ul style="font-size: 100%; font-family: Century" class="reveal-text-center">
+
+-   Administering some crucial changes within datasets such as converting datatype to get desired one and using functions for calculating values.
+-   Manipulating datasets by performing some critical computations as required.
+-   Stating use case for all the changes made within datasets along with detailed summary of all datasets.
+-   Recording statement for every minor to major changes made across datasets.
+
+</ul>
+
+### Code Chunk {style="font-family: Century;"}
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Splitting date and time in two different columns.
+
+</p>
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Here parsing a character string into date and time using mdy_hms().
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+heartrate_seconds$date1 <- mdy_hms(heartrate_seconds$Time)
+hourly_calories$date1 <- mdy_hms(hourly_calories$ActivityHour)
+hourly_intensities$date1 <- mdy_hms(hourly_intensities$ActivityHour)
+hourly_steps$date1 <- mdy_hms(hourly_steps$ActivityHour)
+minute_calories_narrow$date1 <- mdy_hms(minute_calories_narrow$ActivityMinute)
+minute_calories_wide$date1 <- mdy_hms(minute_calories_wide$ActivityHour)
+minute_intensities_wide$date1 <- mdy_hms(minute_intensities_wide$ActivityHour)
+minute_intensities_narrow$date1 <- mdy_hms(minute_intensities_narrow$ActivityMinute)
+minute_METs_narrow$date1 <- mdy_hms(minute_METs_narrow$ActivityMinute)
+minute_sleep$date1 <- mdy_hms(minute_sleep$date)
+minute_steps_narrow$date1 <- mdy_hms(minute_steps_narrow$ActivityMinute)
+minute_steps_wide$date1 <- mdy_hms(minute_steps_wide$ActivityHour)
+sleep_day$date1 <- mdy_hms(sleep_day$SleepDay)
+weight_log_info$date1 <- mdy_hms(weight_log_info$Date)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Converting and extracting date from date and time column using as.date().
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+daily_activity$ActivityDate <- as.Date(daily_activity$ActivityDate, format = "%m/%d/%Y")
+daily_calories$ActivityDay <- as.Date(daily_calories$ActivityDay,format = "%m/%d/%Y")
+daily_Intensities$ActivityDay <- as.Date(daily_Intensities$ActivityDay,format = "%m/%d/%Y")
+daily_steps$ActivityDay <- as.Date(daily_steps$ActivityDay,format = "%m/%d/%Y")
+heartrate_seconds$Date <- as.Date(heartrate_seconds$date1)
+hourly_calories$Date <- as.Date(hourly_calories$date1)
+hourly_intensities$Date <- as.Date(hourly_intensities$date1)
+hourly_steps$Date <- as.Date(hourly_steps$date1)
+minute_calories_narrow$Date <- as.Date(minute_calories_narrow$date1)
+minute_calories_wide$Date <- as.Date(minute_calories_wide$date1)
+minute_intensities_wide$Date <- as.Date(minute_intensities_wide$date1)
+minute_intensities_narrow$Date <- as.Date(minute_intensities_narrow$date1)
+minute_METs_narrow$Date <- as.Date(minute_METs_narrow$date1)
+minute_sleep$Date <- as.Date(minute_sleep$date1)
+minute_steps_narrow$Date <- as.Date(minute_steps_narrow$date1)
+minute_steps_wide$Date <- as.Date(minute_steps_wide$date1)
+sleep_day$Date <- as.Date(sleep_day$date1)
+weight_log_info$Date <- as.Date(weight_log_info$date1)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Converting and extracting time from date and time column using as_hms().
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+heartrate_seconds$Time <- as_hms(heartrate_seconds$date1)
+hourly_calories$Time <- as_hms(hourly_calories$date1)
+hourly_intensities$Time <- as_hms(hourly_intensities$date1)
+hourly_steps$Time <- as_hms(hourly_steps$date1)
+minute_calories_narrow$Time <- as_hms(minute_calories_narrow$date1)
+minute_calories_wide$Time <- as_hms(minute_calories_wide$date1)
+minute_intensities_wide$Time <- as_hms(minute_intensities_wide$date1)
+minute_intensities_narrow$Time <- as_hms(minute_intensities_narrow$date1)
+minute_METs_narrow$Time <- as_hms(minute_METs_narrow$date1)
+minute_sleep$Time <- as_hms(minute_sleep$date1)
+minute_steps_narrow$Time <- as_hms(minute_steps_narrow$date1)
+minute_steps_wide$Time <- as_hms(minute_steps_wide$date1)
+sleep_day$Time <- as_hms(sleep_day$date1)
+weight_log_info$Time <- as_hms(weight_log_info$date1)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Removing Columns from a dataset.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+heartrate_seconds$date1 <- NULL
+hourly_calories$date1 <- NULL
+hourly_calories$ActivityHour <- NULL
+hourly_intensities$date1 <- NULL
+hourly_intensities$ActivityHour <- NULL
+hourly_steps$date1 <- NULL
+hourly_steps$ActivityHour <- NULL
+minute_calories_narrow$date1 <- NULL
+minute_calories_narrow$ActivityMinute <- NULL
+minute_calories_wide$date1 <- NULL
+minute_calories_wide$ActivityHour <- NULL
+minute_intensities_wide$date1 <- NULL
+minute_intensities_wide$ActivityHour <- NULL
+minute_intensities_narrow$date1 <- NULL
+minute_intensities_narrow$ActivityMinute <- NULL
+minute_METs_narrow$date1 <- NULL
+minute_METs_narrow$ActivityMinute <- NULL
+minute_sleep$date1 <- NULL
+minute_sleep$date <- NULL
+minute_steps_narrow$date1 <- NULL
+minute_steps_narrow$ActivityMinute <- NULL
+minute_steps_wide$date1 <- NULL
+minute_steps_wide$ActivityHour <- NULL
+sleep_day$date1 <- NULL
+sleep_day$SleepDay <- NULL
+weight_log_info$date1 <- NULL
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Extracting months from dates in datasets using format () and "%B" which reperesent month name in characters.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+daily_activity$Month <- format(daily_activity$ActivityDate, "%B")
+daily_calories$Month <- format(daily_calories$ActivityDay, "%B")
+daily_Intensities$Month <- format(daily_Intensities$ActivityDay, "%B")
+daily_steps$Month <- format(daily_steps$ActivityDay, "%B")
+heartrate_seconds$Month <- format(heartrate_seconds$Date,"%B")
+hourly_calories$Month  <- format(hourly_calories$Date, "%B")
+hourly_intensities$Month  <- format(hourly_intensities$Date,"%B")
+hourly_steps$Month  <- format(hourly_steps$Date,"%B")
+minute_calories_narrow$Month <- format(minute_calories_narrow$Date,"%B")
+minute_calories_wide$Month <- format(minute_calories_wide$Date,"%B")
+minute_intensities_wide$Month <- format(minute_intensities_wide$Date,"%B")
+minute_intensities_narrow$Month <- format(minute_intensities_narrow$Date,"%B")
+minute_METs_narrow$Month <- format(minute_METs_narrow$Date,"%B")
+minute_sleep$Month <- format(minute_sleep$Date,"%B")
+minute_steps_narrow$Month <- format(minute_steps_narrow$Date,"%B")
+minute_steps_wide$Month <- format(minute_steps_wide$Date,"%B")
+sleep_day$Month <- format(sleep_day$Date,"%B")
+weight_log_info$Month <- format(weight_log_info$Date,"%B") 
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Getting weekdays from date columns of every datasets using weekdays().
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+daily_activity$WeekDay <- weekdays(daily_activity$ActivityDate)
+daily_calories$WeekDay <- weekdays(daily_calories$ActivityDay)
+daily_Intensities$WeekDay <- weekdays(daily_Intensities$ActivityDay)
+daily_steps$WeekDay <- weekdays(daily_steps$ActivityDay)
+heartrate_seconds$WeekDay <- weekdays(heartrate_seconds$Date)
+hourly_calories$WeekDay   <- weekdays(hourly_calories$Date)
+hourly_intensities$WeekDay   <- weekdays(hourly_intensities$Date)
+hourly_steps$WeekDay  <- weekdays(hourly_steps$Date)
+minute_calories_narrow$WeekDay  <- weekdays(minute_calories_narrow$Date)
+minute_calories_wide$WeekDay  <- weekdays(minute_calories_wide$Date)
+minute_intensities_wide$WeekDay  <- weekdays(minute_intensities_wide$Date)
+minute_intensities_WeekDay <- weekdays(minute_METs_narrow$Date)
+minute_sleep$WeekDay <- weekdays(minute_sleep$Date)
+minute_steps_narrow$WeekDay  <- weekdays(minute_steps_narrow$Date)
+minute_steps_wide$WeekDay  <- weekdays(minute_steps_wide$Date)
+sleep_day$WeekDay  <- weekdays(sleep_day$Date)
+weight_log_info$WeekDay  <- weekdays(weight_log_info$Date) 
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Creating breaks and labels to convert time into time of the day.
+
+</p>
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Creating breaks.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+breaks <- hour(hm("00:00", "6:00", "12:00", "18:00", "23:59"))
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Creating labels for breaks.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+labels <- c("Night", "Morning", "Afternoon", "Evening")
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Converting time into time of the day for various datasets.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+heartrate_seconds$Time_of_day <- cut(x=hour(heartrate_seconds$Time),breaks = breaks,labels = labels,include.lowest = TRUE)
+hourly_calories$Time_of_day <- cut(x=hour(hourly_calories$Time),breaks = breaks,labels = labels,include.lowest = TRUE)
+hourly_intensities$Time_of_day <- cut(x=hour(hourly_intensities$Time),breaks = breaks,labels = labels,include.lowest = TRUE)
+hourly_steps$Time_of_day <- cut(x=hour(hourly_steps$Time),breaks = breaks,labels = labels,include.lowest = TRUE)
+weight_log_info$Time_of_day <- cut(x=hour(weight_log_info$Time),breaks = breaks,labels = labels,include.lowest = TRUE)
+minute_intensities_wide$Time_of_day <- cut(x=hour(minute_intensities_wide$Time),breaks = breaks,labels = labels,include.lowest = TRUE)
+minute_METs_narrow$Time_of_day <- cut(x=hour(minute_METs_narrow$Time),breaks = breaks,labels = labels,include.lowest = TRUE)
+minute_sleep$Time_of_day <- cut(x=hour(minute_sleep$Time),breaks = breaks,labels = labels,include.lowest = TRUE)
+minute_steps_wide$Time_of_day <- cut(x=hour(minute_steps_wide$Time),breaks = breaks,labels = labels,include.lowest = TRUE)
+minute_steps_narrow$Time_of_day <- cut(x=hour(minute_steps_narrow$Time),breaks = breaks,labels = labels,include.lowest = TRUE)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Using str() function to get the detailed data formatting structure of the data frame which includes all rows and columns.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+str(daily_activity)
+
+str(sleep_day)
+
+str(daily_Intensities)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Using colnames() checking the column names of the given data frames.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+colnames(weight_log_info)
+
+colnames(daily_calories)
+
+colnames(daily_steps)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Removing dulicated rows and columns.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+daily_activity <- daily_activity[!duplicated(daily_activity), ]
+
+sleep_day <- sleep_day[!duplicated(sleep_day), ]
+
+daily_Intensities <- daily_Intensities[!duplicated(daily_Intensities), ]
+
+weight_log_info <- weight_log_info[!duplicated(weight_log_info), ]
+
+minute_steps_wide <- minute_steps_wide[!duplicated(minute_steps_wide), ]
+
+minute_intensities_wide <- minute_intensities_wide[!duplicated(minute_intensities_wide), ]
+
+minute_calories_wide <- minute_calories_wide[!duplicated(minute_calories_wide), ]
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Merging data by Id's and creating a distinguishable combination of data frames to ensure a widened outlook.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+calorie_steps <- merge(daily_calories,daily_steps, by = "Id",all = TRUE)
+
+weight_sleep <- merge(weight_log_info,sleep_day,by = "Id", all = TRUE)
+
+dailyActivity_sleep <- merge(daily_activity,sleep_day,by = "Id",all = TRUE)
+
+dailyIntensities_weight <- merge(daily_Intensities,weight_log_info, by = "Id",all = TRUE)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Using 'inner_join()' concatenating datasets by Id's and creating a distinguishable combination of data frames to ensure a widened outlook.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+hourly_calories_intensities <- inner_join(hourly_calories,hourly_intensities, by = "Id",multiple = "all")
+
+hourly_calories_steps <- inner_join(hourly_calories,hourly_steps, by = "Id",multiple = "all")
+
+hourly_intensities_calories <- inner_join(calorie_steps,hourly_intensities, by = "Id",multiple = "all")
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Ommiting NA's for dataset as it is mandatory in order to visualize.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+dailyActivity_sleep <- na.omit(dailyActivity_sleep)
+dailyIntensities_weight <- na.omit(dailyIntensities_weight)
+hourly_calories_intensities <- na.omit(hourly_calories_intensities)
+daily_activity <- na.omit(daily_activity)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Getting summary of data using summary() function.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+summary(calorie_steps)
+
+summary(weight_sleep)
+
+summary(dailyActivity_sleep)
+
+summary(dailyIntensities_weight)
+
+summary(hourly_calories_intensities)
+
+summary(hourly_calories_steps)
+
+summary(hourly_intensities_calories)
+```
+
+## [ANALYZE PHASE]{data-incremental="" style="font-family: Century;"}
+
+<p style="font-size: 100%; font-family: Century" class="reveal-text-center">
+
+In this crucial phase, I will analyze the clean and processed dataset to uncover answers to known and untapped questions. This will guide Bellabeat's stakeholders and marketing executives to make informed decisions and develop a targeted marketing campaign. Ultimately, this will help retain the existing customer base as well as improve services to the highest standards possible.
+
+</p>
+
+### Key Task {style="font-family: Century;"}
+
+<ul style="font-size: 100%; font-family: Century" class="reveal-text-center">
+
+-   A list of computations was performed to perceive information in a more comprehensive manner in order to understand how female customers are utilizing products and services.
+-   The analysis was conducted to obtain a thorough understanding of female customer traits and to identify any patterns that could help the analytics team determine areas for improvement.
+-   Concatenating multiple datasets expands the ability to explore trends and relationships that may exist, thereby providing a clarity on the significance of the user base.
+-   Several columns were aggregated in order to create another attribute on which comparisons were performed accordingly to ensure a refined understanding of the day to day activity recorded through the bellabeat app.
+-   Various R built-in functions were used to thoroughly examine these datasets and to finalize the profiling for this analysis.
+
+</ul>
+
+### Deliverables {style="font-family: Century;"}
+
+<ul style="font-size: 100%; font-family: Century" class="reveal-text-center">
+
+-   Numerous analysis were performed using some specific functions such as summarise(), distinct(),group_by(),describe(),table(), etc.
+-   The computations will state a brief on how female customers perceive services and products across different categories.
+-   In addition,some statistical operations were also performed to get the relevant distribution of attributes within datasets influencing customer's conduct.
+
+</ul>
+
+### Code Chunk {style="font-family: Century;"}
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Getting an overview of the maximum and minimum calories burned by each user using max() and min() function respectively.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+calorie_steps %>% 
+  group_by(Id) %>% 
+  summarise(Maximum_Calories = max(Calories),Minimum_Calores= min(Calories)) %>% 
+  distinct() %>% 
+  ungroup() %>% 
+  slice(1:13)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Getting a brief on the comparison between calories and steps using max().
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+calorie_steps %>% 
+  group_by(Id) %>%
+  summarise(Maximum_step = max(StepTotal),Calories = max(Calories)) %>% 
+  distinct() %>% 
+  ungroup() %>% 
+  slice(1:13)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Taking a comparison on some specific parameters such as total steps, total distance and Tracked distance based on each weekday.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+daily_activity %>%
+  group_by(WeekDay) %>%
+  select(TotalSteps,TotalDistance,TrackerDistance) %>%
+  summarise_all(mean)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Unraveling the most to least active covered distance average using a summarize_all() function.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+dailyActivity_sleep %>% 
+  select(VeryActiveDistance,ModeratelyActiveDistance,LightActiveDistance) %>%
+  summarize_all(mean)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Understanding the split between most and least active time spent on workout grouped by each weekday using summarize_all().
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+daily_activity %>%
+  group_by(WeekDay) %>% 
+  select(VeryActiveMinutes,FairlyActiveMinutes,LightlyActiveMinutes) %>% 
+  summarize_all(mean)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Previewing sum of very active minutes, fairly active minutes and lightly active minutes grouped by distinctive Id's and month.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+daily_activity %>%
+  group_by(Id,Month) %>%
+  summarize_at(vars(VeryActiveMinutes, FairlyActiveMinutes, LightlyActiveMinutes), sum) %>% 
+  distinct() %>% 
+  ungroup() %>% 
+  slice(1:15)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Glance on maximum amount of sleep vs total time in bed using max().
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+sleep_day %>% 
+  group_by(Id,Month) %>% 
+  summarize(max(TotalMinutesAsleep),max(TotalTimeInBed)) %>% 
+  distinct() %>% 
+  ungroup() %>% 
+  slice(1:20)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Glance on minimum amount of sleep attained vs total time in bed using min().
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+sleep_day %>% 
+  group_by(Id) %>% 
+  summarize(min(TotalMinutesAsleep),min(TotalTimeInBed)) %>% 
+  distinct() %>% 
+  ungroup() %>% 
+  slice(1:13)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Glimpse on a comparison between sedentary minutes, lightly active minutes and fairly active minutes using summarize_all().
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+daily_Intensities %>% 
+  group_by(WeekDay) %>% 
+  select(SedentaryMinutes,LightlyActiveMinutes,FairlyActiveMinutes) %>% 
+  summarise_all(mean)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Previewing a distinct user's total sum of sedentary minutes, lightly active minutes and fairly active minutes using a sum() function.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+dailyIntensities_weight %>% 
+  group_by(Id) %>% 
+  summarise(sedentary_Minutes=sum(SedentaryMinutes), LightlyActive_Minutes=sum(LightlyActiveMinutes), 
+            Active_Minutes=sum(FairlyActiveMinutes)) %>% 
+            distinct() %>% ungroup() %>% slice(1:13)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Using ungroup() and slice() to preview the set number of entries.
+
+</p>
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Glimpse on fetching out the average intensity of workout under several parameters with exact hour and precise time of the day.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+dailyIntensities_weight %>% 
+  group_by(Time_of_day,Time) %>% 
+  select(SedentaryMinutes,LightlyActiveMinutes,FairlyActiveMinutes,VeryActiveMinutes) %>% 
+  summarise_all(mean) %>% 
+  ungroup() %>% 
+  slice(1:20)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Glimpse on fetching out the average time of workout recorded under several parameters with exact hour and precise time of the day.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+dailyIntensities_weight %>% 
+  group_by(Time_of_day,Time) %>% 
+  select(LightlyActiveMinutes,ModeratelyActiveDistance,VeryActiveDistance) %>% 
+  summarise_all(mean) %>% 
+  ungroup() %>% 
+  slice(1:20)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Previewing exact intensity ,calories and step total distribution on the basis of time of day parameter.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+hourly_intensities_calories %>% 
+  group_by(Time_of_day) %>% 
+  select(Calories,StepTotal,TotalIntensity) %>% 
+  summarise_all(mean)
+
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Using quantile function dividing and understanding the dataset overall split and difference.
+
+</p>
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+AS NA's are not allowed in the input data so it is being removed through na.omit() function.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+dailyIntensities_weight <- na.omit(dailyIntensities_weight)
+
+sapply(dailyIntensities_weight[,c("LightlyActiveMinutes","ModeratelyActiveDistance","VeryActiveDistance","WeightKg")]
+       , quantile, probs = c(0.25,0.35,0.5,0.75,0.85,1))
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Taking a look at the overall weight distribution in comparison with total time in bed and other parameter indices using a quantile() function.
+
+</p>
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+AS NA's are not allowed in the input data so it is being removed through na.omit() function.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+weight_sleep <- na.omit(weight_sleep)
+
+sapply(weight_sleep[,c("WeightPounds","Fat","BMI","TotalTimeInBed","TotalMinutesAsleep" )], 
+       quantile, probs = c(0.25,0.35,0.5,0.75,0.85,1))
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Summarizing the dataset specific column to take up the exact overview of respective columns and also rounding of the summary in two decimal places using 'digit'.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+hourly_calories_intensities %>% 
+  select(Calories,TotalIntensity, AverageIntensity) %>% 
+  summary(mean, median, max, min, digits = 2)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Getting a distinct Id's wise overview of calories and total step count.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+hourly_calories_steps %>% 
+  group_by(Id) %>% 
+  summarize(Calories = mean(Calories), Step_Total = mean(StepTotal)) %>% 
+  distinct()
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Digging up various descriptive statistics and different prospects in the dataset using a described() function.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+describe(minute_calories_wide)
+
+describe(minute_steps_wide)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Using a table() function displaying a count of each user's ID occurrence for every single entry recorded in day wise data.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+table(daily_activity$Id)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Using a table() function displaying a count of each user's ID occurrence for every single entry recorded in hourly wise data.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+table(hourly_calories$Id)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Using a table() function displaying a count of each user's ID occurrence for every single entry recorded in minute wise data.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+table(minute_calories_wide$Id)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Taking a glance at average of Fairly active and very active minutes using head().
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+head(mean(daily_activity$FairlyActiveMinutes))
+
+head(mean(daily_activity$VeryActiveMinutes))
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Extracting Id's which are greater or equal to a given threshold and also keeping a count.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+activity_users_minutes <- daily_activity %>% 
+  filter(FairlyActiveMinutes>=13.56 | VeryActiveMinutes>=21.16) %>% 
+  group_by(Id) %>% 
+  count(Id)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Taking a total sum of all different attributes combined to get the exact total amount of time users were active.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+total_minutes <- sum(daily_activity$VeryActiveMinutes,daily_activity$FairlyActiveMinutes,
+                     daily_activity$LightlyActiveMinutes,daily_activity$SedentaryMinutes)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Calculating the percentage by adding each attribute using a sum() and then by dividing it to obtain final quotient.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+sedentary_percentage <- sum(daily_activity$SedentaryMinutes)/total_minutes*100
+lightly_percentage <- sum(daily_activity$LightlyActiveMinutes)/total_minutes*100
+fairly_percentage <- sum(daily_activity$FairlyActiveMinutes)/total_minutes*100
+active_percentage <- sum(daily_activity$VeryActiveMinutes)/total_minutes*100
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Final results are compiled into a data frame for further visualization.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+percentage_minutes_compile <- data.frame(
+  label=c("Sedentary", "Lightly", "Fairly", "Very Active"),
+  minutes=c(sedentary_percentage,lightly_percentage,fairly_percentage,active_percentage)
+)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Taking a glance at average of moderate and very active minutes using head()
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+head(mean(daily_activity$ModeratelyActiveDistance))
+
+head(mean(daily_activity$VeryActiveDistance))
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Extracting Id's which are greater or equal to the given threshold and also keeping a count on the other hand.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+activity_user_distance <- daily_activity %>% 
+  filter(ModeratelyActiveDistance>=0.56 | VeryActiveDistance >= 1.50 ) %>% 
+  group_by(Id) %>% 
+  count(Id)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Taking a total sum of all different attributes combined to get the exact total amount of distance covered by users.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+total_distance <- sum(daily_activity$VeryActiveDistance, daily_activity$ModeratelyActiveDistance, 
+                      daily_activity$LightActiveDistance, 
+                       daily_activity$SedentaryActiveDistance)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Calculating the percentage by adding each attribute using a sum() and then by dividing it to obtain the final quotient.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+veryActive_percentage <- sum(daily_activity$VeryActiveDistance)/total_distance *100
+ModerateActive_percentage <- sum(daily_activity$ModeratelyActiveDistance)/total_distance *100
+LightActive_percentage <- sum(daily_activity$LightActiveDistance)/total_distance *100
+sedentaryDistance_percentage <- sum(daily_activity$SedentaryActiveDistance)/total_distance *100
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Final results are compiled into a data frame for further visualization.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+percentage_distance_compile <- data.frame(
+  label = c("Very Active","Moderate","Lightly Active","Sedentary"),
+  distance = c(veryActive_percentage,ModerateActive_percentage,LightActive_percentage,
+               sedentaryDistance_percentage)
+)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Previewing Calories burned from morning time to evening time for every weekday in a month.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+Calories <- minute_calories_narrow %>% 
+  filter(Calories >= 1) %>% 
+  filter(hms::as_hms(Time) >= hms::as_hms("04:00:00") & hms::as_hms(Time) <= hms::as_hms("21:00:00")) %>% 
+  group_by(Time, Month, WeekDay) %>% 
+  summarize(total_calories = sum(Calories))
+```
+
+## [SHARE PHASE:]{data-incremental="" style="font-family: Century;"}
+
+<p style="font-size: 100%; font-family: Century" class="reveal-text-justify">
+
+In this phase, potential insights will be shared through the use of appropriate visualizations created with tools such as R and Tableau. These visualizations will depict actionable steps that stakeholders can initiate to address the relevant concern.
+
+</p>
+
+### Key Task {style="font-family: Century;"}
+
+<ul style="font-size: 100%; font-family: Century" class="reveal-text-center">
+
+-   Selecting the most adequate tools such as R and tableau to illustrate the visualization in a more effective manner.
+-   Choosing the appropriate graph type to conclude findings along with legends, labels and heading to improve readability and interpretation.
+-   Provide detailed explanations for all aspects of the analysis, including minor details by making the visualization interactive.
+-   Ensuring work is easily accessible.
+
+</ul>
+
+### Deliverables {style="font-family: Century;"}
+
+<ul style="font-size: 100%; font-family: Century" class="reveal-text-center">
+
+-   Presentation of findings accompanied with illustration of graphs along with explanations.
+-   Put a short brief for each visualization included in this phase to aid effective understanding.
+-   All of the visualizations were made interactive in order to provide a wider outlook.
+
+</ul>
+
+### Visualization {style="font-family: Century;"}
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Comparing Total time Slept Vs Total time in Bed using various geom() functions such as geom_point(), geom_smooth() and geom_jitter().
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+ggplotly(ggplot(data = sleep_day) + aes(x = as_hms(TotalTimeInBed), y = as_hms(TotalMinutesAsleep)) + geom_point() + 
+           geom_smooth() + geom_jitter() + labs(title = paste0("<b>", "Total time Asleep Vs Total Time In Bed" ,"</b>"), 
+                                                x = "Total Time in Bed" , y = "Total Minutes as Asleep") 
+  + theme_minimal())
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Here, comparing the split of distance covered for every weekday of a month using geom_bar() function.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+ggplotly(ggplot(data = daily_activity) + aes(x = Month, y = TotalDistance, fill = WeekDay) + geom_bar(stat = 'identity',position = 'dodge', width = 1) + 
+        scale_fill_manual(values =  c("blue","orange","brown","yellow","black","red","darkgoldenrod")) + 
+          labs(title = paste0("<b>", "Comparing Distance for every Weekdays in a month","</b>"), 
+        x = "Month", Y = "Total Distance" , fill = "Weekdays" ) + 
+          theme(axis.text.x = element_text(vjust = 0.5, hjust=1),plot.background = element_rect(fill = "lightblue")))
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Visualized the difference in total steps taken for each weekday of a month using the geom_col() function.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+ggplotly(ggplot(data = daily_activity) + aes(x = Month, y = TotalSteps, fill = WeekDay) + geom_col(position = 'dodge',width = 1 )
+         + scale_fill_manual(values = c("brown","darkgreen","orange","darkgoldenrod","black","blue","darkorchid")) + 
+           labs(title = paste0("<b>","Comparing Total Steps for every Weekdays in a month","</b>"), x = "Month", 
+                y ="Total Steps", fill = "Weekdays") + 
+           theme(axis.title.x = element_text(vjust = 0.5, hjust = 1), plot.background = element_rect(fill = "skyblue")))
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Trying to get the co-relation of total distance covered vs total steps taken every weekday of a month using geom_line(),geom_point() and facet_wrap functions.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+ggplotly(ggplot(data = daily_activity) + aes(x = TotalDistance, y = TotalSteps, fill = Month) + geom_line(linewidth = 1.5)+ 
+           geom_point(size = 2) + facet_wrap(~WeekDay) + scale_fill_manual(values = c("lightblue","orange") ) + 
+           theme(panel.grid.major = element_line(color = "gray", linetype = "dotted")) + 
+           labs(title = "Total Distance Vs Total Steps Taken") + xlab("Total Distance") + ylab("Total Steps"))
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Visualized daily calories burned for every weekday in a month using type as bar plot.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+plot_ly(data = daily_calories, x = ~WeekDay, y = ~Calories, type = "bar", color = ~Month, 
+        colors = c("black", "darkorchid")) %>% 
+  layout(title = "Daily Calories by Weekday and Month", 
+         xaxis = list(title = "Weekday"), yaxis = list(title = "Calories"),
+         legend = list(title = list(text = "Month")),
+         hovermode = "closest") %>% 
+  layout(xaxis = list(tickangle = 60, tickfont = list(size = 10)))
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Visualizing hourly calories burned by each user Id for a weekday in a month using type as geom_line().
+
+</p>
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Create ggplot object.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+ggploty_obj <- ggplot(data = hourly_calories, aes(x = as_hms(Time), 
+                                                  y = Calories, color = Month)) +
+  geom_line(linewidth = 1.5, alpha = 0.8) + facet_wrap(~WeekDay) +
+  scale_color_brewer(palette = "Set1") + 
+  labs(x = "Time of Day", y = "Calories Burned", 
+       title = "Hourly Calories burned each weekday of an month") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Convert ggplot object to plotly object.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+plot_obj <- ggplotly(ggploty_obj)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Show plotly object.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+plot_obj
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Visualized each minute of calories burned for a month on weekday basis using geom_line() and facet_wrap() function.
+
+</p>
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Create ggplot object.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+ggplot_obj <- ggplot(data = Calories, aes(x = as_hms(Time), y = total_calories, color = Month)) +
+  geom_line(linewidth = 1.5, alpha = 0.8) + facet_wrap(~WeekDay) +
+  scale_color_brewer(palette = "Dark2") + 
+  labs(x = "Time of Day", y = "Calories Burned", 
+       title = "Each minute of calories burned on a weekday of a month") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Convert ggplot object to plotly object.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+plotly_obj <- ggplotly(ggplot_obj)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Display plotly object.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+plotly_obj
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Comparing randomness and correlation for Total_Minute_As_sleep, Total_Time_In_Bed and Sedentary_Minutes using correlogram.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+change_palette_single <- function(data, mapping, method = "lm", ...) {
+    correlogram <- ggplot(data = data, mapping = mapping) +
+      geom_point(colour = "darkgreen") +
+      geom_smooth(method = method, color = "darkred", ...)
+    return(correlogram)
+  }
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Selecting the specific columns.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+correlogram <- dailyActivity_sleep %>%
+  select(TotalMinutesAsleep, TotalTimeInBed, SedentaryMinutes) %>%
+  ggpairs(lower = list(continuous = wrap(change_palette_single, method = "lm",
+                                         data = dailyActivity_sleep)),
+          diag = list(continuous = wrap("barDiag", colour = "Darkgreen")),
+          upper = list(continuous = wrap("cor", size = 4))) +
+  theme(panel.grid.major = element_blank()) +
+  labs(title = "Correlogram Of Sedentary Minutes vs Sleep")
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Convert to interactive plot with ggplotly.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+p <- ggplotly(correlogram)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Adjust margin of title.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+p <- layout(p, title = list(text = "Correlogram Of Sedentary Minutes vs Sleep",
+                            font = list(size = 16),
+                            margin = list(b = 40)))
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Display interactive plot.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+p
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Comparing randomness and correlation for weight, BMI and Sedentary minutes using correlogram.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+change_palette_single1 <- function(data, mapping, method = "lm", ...) {
+  correlogram <- ggplot(data = data, mapping = mapping) +
+    geom_point(colour = "darkblue") +
+    geom_smooth(method = method, color = "darkgoldenrod", ...)
+  return(correlogram)
+}
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Selecting the specific columns.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+correlogram1 <- dailyIntensities_weight %>%
+  select(WeightPounds, BMI, SedentaryMinutes) %>%
+  ggpairs(lower = list(continuous = wrap(change_palette_single1, 
+                  method = "lm", data = dailyIntensities_weight)),
+          diag = list(continuous = wrap("barDiag", colour = "Darkblue")),
+          upper = list(continuous = wrap("cor", size = 4))) +
+  theme(panel.grid.major = element_blank()) +
+  labs(title = "Correlogram Of Weight vs Sedentary Minutes")
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Convert to interactive plot with ggplotly.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+p1 <- ggplotly(correlogram1)
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Adjust margin of title
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+p1 <- layout(p1, title = list(text = "Correlogram Of Weight vs Sedentary Minutes",
+                            font = list(size = 16),
+                            margin = list(b = 40)))
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Display interactive plot.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+p1
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Here, looking through Total steps Vs Calories followed by sedentary minutes using bubble chart.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+ggplotly(ggplot(data = daily_activity) + aes(x = TotalSteps, y = Calories, 
+  color = SedentaryMinutes , size = SedentaryMinutes) +
+  geom_point(alpha = 0.6) + scale_size(range = c(1.4,10)) + 
+    labs(title = "Total Steps Vs Calories" ,x = "Total Steps",
+         y = "Calories", color = "Sedentary Minutes") + 
+    scale_color_viridis(discrete = FALSE, guide = FALSE)+ theme_ipsum() + 
+    guides(color = guide_colorbar(title = "Sedentary Minutes")))
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Here, created pie chart to know the exact split of various active minutes spent by users in percentage.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+plot_ly(percentage_minutes_compile, labels = ~label, values = ~minutes, 
+        type = 'pie',textposition = 'outside',textinfo = 'label+percent') %>%
+  layout(title = 'Activity Level Minutes',
+         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+```
+
+<p style="font-size: 100%; font-family: Century; font-weight: bold" class="reveal-text-center">
+
+Here, created pie chart to know the exact split of various active distance covered by users in percentage.
+
+</p>
+
+```{r warning=FALSE, message=FALSE}
+plot_ly(percentage_distance_compile, labels = ~label, values = ~distance, 
+        type = 'pie',textposition = 'outside',textinfo = 'label+percent') %>%
+  layout(title = 'Activity Distance',
+         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+```
+
+## [TABLEAU DASHBOARD]{data-incremental="" style="font-family: Bookman Old Style;"}
+
+```{r warning=FALSE, message=FALSE}
+htmltools::HTML("
+<div class='tableauPlaceholder' id='viz1679140790858' style='position: relative'>
+  <noscript>
+    <a href='#'>
+      <img alt='BELLABEAT DATA ANALYSIS DASHBOARD ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Be&#47;BellaBeatCaseStudy_16779607987320&#47;BellaBeatDashBoard&#47;1_rss.png' style='border: none' />
+    </a>
+  </noscript>
+  <object class='tableauViz'  style='display:none;'>
+    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+    <param name='embed_code_version' value='3' />
+    <param name='site_root' value='' />
+    <param name='name' value='BellaBeatCaseStudy_16779607987320&#47;BellaBeatDashBoard' />
+    <param name='tabs' value='no' />
+    <param name='toolbar' value='yes' />
+    <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Be&#47;BellaBeatCaseStudy_16779607987320&#47;BellaBeatDashBoard&#47;1.png' />
+    <param name='animate_transition' value='yes' />
+    <param name='display_static_image' value='yes' />
+    <param name='display_spinner' value='yes' />
+    <param name='display_overlay' value='yes' />
+    <param name='display_count' value='yes' />
+    <param name='language' value='en-US' />
+  </object>
+</div>
+<script type='text/javascript'>
+  var divElement = document.getElementById('viz1679140790858');
+  var vizElement = divElement.getElementsByTagName('object')[0];
+  if ( divElement.offsetWidth > 800 ) {
+    vizElement.style.width='100%';
+    vizElement.style.height=(divElement.offsetWidth*0.75)+'px';
+  } else if ( divElement.offsetWidth > 500 ) {
+    vizElement.style.width='2000px';
+    vizElement.style.height='1327px';
+  } else {
+    vizElement.style.width='100%';
+    vizElement.style.height='2427px';
+  }
+  var scriptElement = document.createElement('script');
+  scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+  vizElement.parentNode.insertBefore(scriptElement, vizElement);
+</script>")
+```
+
+## [ACT PHASE:]{data-incremental="" style="font-family: Century;"}
+
+<p style="font-size: 100%; font-family: Century;" class="reveal-text-center">
+
+This extensively crucial phase of strategizing the new marketing campaign will be carried out by Urška Sršen(Bellabeat's cofounder and Chief Creative Officer),Sando Mur(Mathematician and Bellabeat's cofounder; key member of the Bellabeat executive team) and Bellabeat marketing team based on the conclusion of the above analysis made.
+
+</p>
+
+## [CONCLUSION:]{data-incremental="" style="font-family: Century;"}
+
+<ul style="font-size: 100%; font-family: Century" class="reveal-text-center">
+
+-   The relationship between total time asleep and total time in bed appears to be quite linear. Nevertheless, some users sleep for more than 10 hours and spend over 12 hours in bed, which results in an unhealthy sleep cycle.
+-   The distance covered by each female user appears to be more active during weekends, particularly on Saturdays and Sundays, compared to other weekdays. Additionally, it varies from month to month. Out of the two months' data available, Thursday and Tuesday recorded the lowest distance covered by female users for the month of May.
+-   The co-relation of total steps walked every weekday in a month appear to be similar with the distance covered by each user. This suggests that most calories are burned through walking, irrespective of any other exercises.
+-   Based on two-month data, one interesting insight is that the maximum amount of calories on a daily basis were burned by women users during the month of April, whereas the lowest sum of calories was burned during the month of May.
+-   The data shows that active weekdays for calories burned on a minute-by-minute and hourly basis almost follows a linear pattern, with Friday, Saturday, Thursday, and Tuesday being the peak weekdays compared to the rest of the week.
+-   The correlogram of total time asleep, and total time in bed clearly indicates a positive relationship between them.However, sedentary minutes have a negative relationship with both total time asleep and time in bed. Additionally, the distribution of sedentary minutes is bimodal.These findings suggest that increasing time spent asleep and in bed may be beneficial for overall health, while reducing sedentary behavior could also have a positive impact on day to day life.
+-   The correlogram of weight in pounds and BMI reveals a clear positive relationship between these variables, while sedentary minutes exhibit a negative relationship with both weight and BMI. These findings suggest that reducing sedentary behavior could help maintain a balanced weight and BMI.
+-   The pie chart clearly shows that sedentary minutes percentage are comparatively much higher than the rest of the segments, such as very active minutes, fairly active minutes and lightly active minutes, which shows that users were very minimally active.
+-   The second pie chart reveals that lightly active distance contribute almost 50% of total segments followed by very active and moderate distance.However, sedentary distance is almost negligible as compared to all three segments.
+-   Among the three categories of distance covered by each female user, the average distance for very active distance is 1.39km, the moderate distance is 0.73km, while in comparison with the light active distance, which is much higher at 3.53km. These findings suggest that female users engaged in a variety of physical activity levels, with light activity being the most common and highest in distance.
+
+</ul>
+
+## [DELIVERABLE:]{data-incremental="" style="font-family: Century;"}
+
+<ul style="font-size: 100%; font-family: Century" class="reveal-text-center">
+
+-   Allocate data engineers to focus on collecting a diverse range of health data while maintaining data integrity and by enabling integration of data science into bellabeat resulting in personalized push notifications based on individual health parameters.
+-   Integrating data science can help curate a comprehensive understanding of their health and wellness that in turn can guide them towards more informed decisions about their lifestyle choices and improve their overall well-being.Thus making the app a more effective tool for achieving health and wellness goals.
+-   An effective way to get weight info is to first partner with any weight scale manufacturer to develop a smart weight scale digital solution to get the precise weight readings.It is one of the crucial parameters which will help nutritionists or algorithms to provide personalized and accurate guidance. Also, by leveraging this data, the overall experience for achieving health and wellness goals can be enhanced more effectively.
+-   To create a more engaging experience for our users, we could develop a community feature that allows them to connect with friends from their contacts, social media accounts, or directly within the app. By leveraging social connections, we can boost user engagement and increase screen time on the app.
+-   Bellabeat app can be an essential part of our users' daily routine by integrating additional features that help them plan their day. Along with that, it could include an alarm option that alerts them to attend scheduled tasks throughout the day. Additionally, we could host weekly and monthly challenges that are open to users from any location, and offer rewards such as discount coupons or free product or service subscriptions for those who complete the challenges. These features will not only enhance the user experience, but also encourage them to use the app regularly and make healthier choices as part of their daily lifestyle.
+-   To help users improve their sleep cycle, we can add extensions to the app that provide default notifications for getting into bed and waking up on time. This can be achieved by incorporating heart rate sensors that detect the user's sleep time and provide alerts accordingly. These features will not only promote better sleep habits, but also enhance the user experience by providing personalized notifications based on their individual sleep patterns.
+-   To reduce sedentary minutes, it is essential to add an extra feature that enables users to drink water after every half an hour to stay hydrated. Additionally,if a user has been sedentary for two or three hours, remind the user to take a short walk in order to make them more active and productive throughout the day.By incorporating these features, users can stay motivated to stay active and healthy, leading to a more balanced lifestyle.
+-   To reduce total time in bed, bellabeat can add an additional feature to the sleep cycle feature that prompts users with a notification to fall asleep if they are awake in bed for an extended period of time. Additionally, Bellabeat can partner with a software company that produces meditation and sleep time stories and integrate subscription packages within its annual or monthly packages. This can help users to get a complete bundle of health and calmness along with a push to fall asleep early, thus reducing total time in bed.
+-   Expand your user base by enabling referral benefits such as giving both users the benefit of a 50% - 50% discount on annual subscriptions, or else providing any subscription to any product.Other than that, another extra feature can be added by creating a bellabeat, secure wallet service where users can earn coins on referrals plus gets rewarded for every challenge they participate and then can spent it on any bellabeat products or services purchases made in any near future.
+
+</ul>
+
+## [RESOURCES:]{data-incremental="" style="font-family: Century;"}
+
+<ul style="font-size: 100%; font-family: Century" class="reveal-text-center">
+
+-   Stack overflow [\[Link\]](https://stackoverflow.com/questions){preview-link="true"}.
+-   RStudio Community[\[Link\]](https://community.rstudio.com/){preview-link="true"}.
+-   RPubs[\[Link\]](https://rpubs.com/){preview-link="true"}.
+-   Kaggle [\[Link\]](https://www.kaggle.com/){preview-link="true"}.
+-   National Library Of Medicine [\[Link\]](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7355403/){preview-link="true"}.
+
+</ul>
